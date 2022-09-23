@@ -1,18 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using InputController;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class C : MonoBehaviour
+public class CharactereMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] InputActionReference _move;
+    [SerializeField] Animator _animator;
 
-    // Update is called once per frame
+
     void Update()
     {
-        
+        Vector2 value = _move.action.ReadValue<Vector2>();
+        float speed = value.magnitude;
+        speed = Mathf.Clamp(value: speed, min: 0f, max: 1f);
+        _animator.SetFloat("Speed", speed);
     }
 }
