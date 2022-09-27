@@ -9,7 +9,7 @@ public class CharactereMovement : MonoBehaviour
     [SerializeField] InputActionReference _move;
     [SerializeField] Animator _animator;
     [SerializeField] float _speed;
-    [SerializeField] Rigidbody _rb;
+    [SerializeField] CharacterController _cc;
 
     private void Start()
     {
@@ -23,7 +23,9 @@ public class CharactereMovement : MonoBehaviour
         speed = Mathf.Clamp(value: speed, min: 0f, max: 1f);
         _animator.SetFloat("Speed", speed);
 
-        _rb.transform.Translate(0, 0, speed * Time.deltaTime);
+        _cc.transform.Translate(0, 0, speed * Time.deltaTime);
+
+        
 
         
 
